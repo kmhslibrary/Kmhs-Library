@@ -3,56 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KMHSS V21.0 RIT Sundar - Fixed All</title>
+<title>KMHSS V21 Fixed</title>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
-body{margin:0;font-family:'Noto Sans Malayalam',Arial,sans-serif;background:#f2f2f2;}
+body{margin:0;font-family:Arial,sans-serif;background:#f2f2f2;}
 #loginPage{height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#0f172a,#1e3a8a);}
 .login-box{background:#fff;padding:32px;border-radius:14px;width:350px;text-align:center;}
-.login-box input{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px;box-sizing:border-box;}
 .btn{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:8px;}
 #mainApp{display:none;padding:10px;}
-header{background:#FFF9C4;text-align:center;padding:16px;border-radius:12px;border:1px solid #f0e68c;overflow:hidden;}
-header h1{margin:0;color:#5d4037;font-size:clamp(22px,5vw,44px);line-height:1.2;word-wrap:break-word;overflow-wrap:anywhere;max-width:100%;}
-header p{margin:4px 0 0;font-size:clamp(10px,2.5vw,12px);}
-.backup-bar{text-align:center;margin:10px 0;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
-.backup-bar button{padding:8px 16px;border-radius:20px;border:1px solid #333;background:#fff;font-weight:bold;cursor:pointer;font-size:12px;}
-.backup-bar button.backup{background:#0d6efd;color:#fff;border:none;}
-.backup-bar button.restore{background:#198754;color:#fff;border:none;}
+header{background:#FFF9C4;text-align:center;padding:16px;border-radius:12px;overflow:hidden;}
+header h1{margin:0;color:#5d4037;font-size:clamp(22px,5vw,44px);line-height:1.2;word-wrap:break-word;overflow-wrap:anywhere;}
 .nav{text-align:center;margin:12px 0;display:flex;flex-wrap:wrap;justify-content:center;gap:4px;}
 .nav button{padding:8px 14px;margin:2px;background:#fff;border:1px solid #aaa;border-radius:20px;cursor:pointer;font-weight:bold;font-size:12px;}
 .nav button.active{background:#111;color:#fff;}
 .section{display:none;background:#fff;padding:20px;border-radius:12px;margin-top:10px;overflow-x:auto;}
 .section.active{display:block;}
-.split{display:flex;gap:20px;flex-wrap:wrap;}
-.left{flex:1;min-width:280px;}.right{flex:1;min-width:280px;min-height:300px;border:2px dashed #bbb;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fafafa;cursor:pointer;}
-.right img{width:100%;height:100%;object-fit:cover;}
-input,select{width:100%;padding:11px;margin:5px 0;border:1px solid #bbb;border-radius:6px;box-sizing:border-box;}
-label{font-size:12px;font-weight:bold;display:block;margin-top:8px;}
-table{width:100%;border-collapse:collapse;margin-top:10px;min-width:700px;} th,td{border:1px solid #ccc;padding:7px;font-size:13px;text-align:left;} th{background:#222;color:#fff;}
-.search-wrap{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;}.search-wrap input{flex:1;min-width:200px;padding:12px;border:2px solid #aaa;border-radius:8px;}.search-wrap button{padding:12px 20px;background:#111;color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer;}
-.auto-field{background:#eeeeee!important;}
+table{width:100%;border-collapse:collapse;margin-top:10px;} th,td{border:1px solid #ccc;padding:7px;font-size:13px;text-align:left;} th{background:#222;color:#fff;}
 .export-btn{padding:10px 20px;background:#111;color:#fff;border:none;border-radius:8px;margin-top:15px;font-weight:bold;cursor:pointer;}
-.edit-btn{padding:4px 8px;background:#0d6efd;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:2px;font-size:11px;}
-.del-btn{padding:4px 8px;background:#dc3545;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:2px;font-size:11px;}
+input,select{width:100%;padding:11px;margin:5px 0;border:1px solid #bbb;border-radius:6px;box-sizing:border-box;}
+.auto-field{background:#eee!important;}
 </style>
 </head>
 <body>
-<div id="loginPage">
-<div class="login-box">
-<h1 style="font-size:clamp(20px,6vw,28px);">കെ എം എച്ച് എസ് ഗ്രന്ഥപ്പുര</h1>
-<input type="password" id="passInput" placeholder="Password">
-<button class="btn" onclick="doLogin()">Login</button>
-<p style="font-size:11px;margin-top:12px;cursor:pointer;text-decoration:underline;color:#666;" onclick="changePass()">Password മാറ്റാൻ</p>
-</div>
-</div>
+<div id="loginPage"><div class="login-box"><h1>കെ എം എച്ച് എസ് ഗ്രന്ഥപ്പുര</h1><input type="password" id="passInput" placeholder="Password"><button class="btn" onclick="doLogin()">Login</button></div></div>
 <div id="mainApp">
-<header><h1>കെ എം എച്ച് എസ് ഗ്രന്ഥപ്പുര</h1><p>KM HSS Karulai - V21.0 RIT Sundar Fixed - All Export Working</p></header>
-<div class="backup-bar">
-<button class="backup" onclick="backupData()">📦 Backup എടുക്കുക</button>
-<button class="restore" onclick="document.getElementById('restoreInput').click()">📥 Restore ചെയ്യുക</button>
-<button onclick="clearAllData()" style="background:#dc3545;color:#fff;border:none;">🗑️ Clear</button>
+<header><h1>കെ എം എച്ച് എസ് ഗ്രന്ഥപ്പുര</h1><p>V21 Fixed - All Working</p></header>
+<div style="text-align:center;margin:10px 0;display:flex;gap:8px;justify-content:center;">
+<button onclick="backupData()" style="padding:8px 16px;border-radius:20px;background:#0d6efd;color:#fff;border:none;font-weight:bold;">📦 Backup</button>
+<button onclick="document.getElementById('restoreInput').click()" style="padding:8px 16px;border-radius:20px;background:#198754;color:#fff;border:none;font-weight:bold;">📥 Restore</button>
 </div>
 <div class="nav">
 <button class="active" onclick="openTab('add',this)">📘 പുതിയ പുസ്തകം</button>
@@ -61,112 +39,27 @@ table{width:100%;border-collapse:collapse;margin-top:10px;min-width:700px;} th,t
 <button onclick="openTab('stock',this)">📋 Stock</button>
 <button onclick="openTab('borrowList',this)">📖 Borrow List</button>
 <button onclick="openTab('returnList',this)">✅ Return List</button>
-<button onclick="openTab('history',this)">🕒 History</button>
 </div>
-<div class="search-wrap">
-<input type="text" id="globalSearch" placeholder="CN.No / Book No / പേര് തിരയുക...">
-<button onclick="doSearch()">Search</button>
-<button onclick="clearSearch()" style="background:#666;">Clear</button>
+<div id="add" class="section active"><h3>പുതിയ പുസ്തകം</h3><label>CN.No *</label><input id="cnNo"><label>Book No *</label><input id="bookNo"><label>പേര് *</label><input id="bookName"><button class="btn" onclick="addBook()">Add</button></div>
+<div id="stock" class="section"><h3>Stock List</h3><table id="stockTable"><thead><tr><th>Sl.No</th><th>CN.No</th><th>Book No</th><th>പേര്</th><th>Status</th></tr></thead><tbody></tbody></table><button class="export-btn" onclick="exportExcel('stockTable','Stock_List')">📊 Export Stock</button></div>
+<div id="borrowList" class="section"><h3>Borrow List</h3><table id="borrowTable"><thead><tr><th>Sl.No</th><th>കുട്ടി</th><th>Book No</th><th>പുസ്തകം</th></tr></thead><tbody></tbody></table><button class="export-btn" onclick="exportExcel('borrowTable','Borrow_List')">📊 Export Borrow</button></div>
+<div id="returnList" class="section"><h3>Return List</h3><table id="returnTable"><thead><tr><th>Sl.No</th><th>കുട്ടി</th><th>Book No</th><th>പുസ്തകം</th></tr></thead><tbody></tbody></table><button class="export-btn" onclick="exportExcel('returnTable','Return_List')">📊 Export Return</button></div>
+<div id="borrow" class="section"><h3>Borrow</h3><label>കുട്ടിയുടെ പേര്</label><input id="studName"><label>Book No</label><input id="borrowBookName"><button class="btn" onclick="borrowBook()">Borrow</button></div>
+<div id="return" class="section"><h3>Return</h3><label>Book No</label><input id="retBookNo"><button class="btn" onclick="returnBook()">Return</button></div>
 </div>
-<div id="add" class="section active">
-<div class="split">
-<div class="left">
-<h3>പുതിയ പുസ്തകം ചേർക്കുക</h3>
-<label>CN.No *</label><input id="cnNo">
-<label>ബുക്ക് നമ്പർ *</label><input id="bookNo">
-<label>പുസ്തകത്തിന്റെ പേര് *</label><input id="bookName">
-<label>കാറ്റഗറി</label><select id="category"><option>നോവൽ</option><option>കഥ</option><option>കവിത</option><option>പാഠപുസ്തകം</option><option>ചരിത്രം</option><option>ശാസ്ത്രം</option><option>ബാലസാഹിത്യം</option></select>
-<label>രചയിതാവ്</label><input id="author">
-<label>വില</label><input type="number" id="price">
-<label>ഡേറ്റ് (Auto)</label><input id="entryDate" class="auto-field" readonly>
-<button class="btn" onclick="addBook()">Add To Stock</button>
-</div>
-<div class="right" onclick="pickImage(this)"><span>📷 kalam.jpg</span></div>
-</div>
-</div>
-<!DOCTYPE html>
-<html lang="ml">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KMHSS V21.0 RIT Sundar - Fixed All</title>
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<style>
-body{margin:0;font-family:'Noto Sans Malayalam',Arial,sans-serif;background:#f2f2f2;}
-#loginPage{height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#0f172a,#1e3a8a);}
-.login-box{background:#fff;padding:32px;border-radius:14px;width:350px;text-align:center;}
-.login-box input{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px;box-sizing:border-box;}
-.btn{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:8px;}
-#mainApp{display:none;padding:10px;}
-header{background:#FFF9C4;text-align:center;padding:16px;border-radius:12px;border:1px solid #f0e68c;overflow:hidden;}
-header h1{margin:0;color:#5d4037;font-size:clamp(22px,5vw,44px);line-height:1.2;word-wrap:break-word;overflow-wrap:anywhere;max-width:100%;}
-header p{margin:4px 0 0;font-size:clamp(10px,2.5vw,12px);}
-.backup-bar{text-align:center;margin:10px 0;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
-.backup-bar button{padding:8px 16px;border-radius:20px;border:1px solid #333;background:#fff;font-weight:bold;cursor:pointer;font-size:12px;}
-.backup-bar button.backup{background:#0d6efd;color:#fff;border:none;}
-.backup-bar button.restore{background:#198754;color:#fff;border:none;}
-.nav{text-align:center;margin:12px 0;display:flex;flex-wrap:wrap;justify-content:center;gap:4px;}
-.nav button{padding:8px 14px;margin:2px;background:#fff;border:1px solid #aaa;border-radius:20px;cursor:pointer;font-weight:bold;font-size:12px;}
-.nav button.active{background:#111;color:#fff;}
-.section{display:none;background:#fff;padding:20px;border-radius:12px;margin-top:10px;overflow-x:auto;}
-.section.active{display:block;}
-.split{display:flex;gap:20px;flex-wrap:wrap;}
-.left{flex:1;min-width:280px;}.right{flex:1;min-width:280px;min-height:300px;border:2px dashed #bbb;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fafafa;cursor:pointer;}
-.right img{width:100%;height:100%;object-fit:cover;}
-input,select{width:100%;padding:11px;margin:5px 0;border:1px solid #bbb;border-radius:6px;box-sizing:border-box;}
-label{font-size:12px;font-weight:bold;display:block;margin-top:8px;}
-table{width:100%;border-collapse:collapse;margin-top:10px;min-width:700px;} th,td{border:1px solid #ccc;padding:7px;font-size:13px;text-align:left;} th{background:#222;color:#fff;}
-.search-wrap{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;}.search-wrap input{flex:1;min-width:200px;padding:12px;border:2px solid #aaa;border-radius:8px;}.search-wrap button{padding:12px 20px;background:#111;color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer;}
-.auto-field{background:#eeeeee!important;}
-.export-btn{padding:10px 20px;background:#111;color:#fff;border:none;border-radius:8px;margin-top:15px;font-weight:bold;cursor:pointer;}
-.edit-btn{padding:4px 8px;background:#0d6efd;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:2px;font-size:11px;}
-.del-btn{padding:4px 8px;background:#dc3545;color:#fff;border:none;border-radius:4px;cursor:pointer;margin:2px;font-size:11px;}
-</style>
-</head>
-<body>
-<div id="loginPage">
-<div class="login-box">
-<h1 style="font-size:clamp(20px,6vw,28px);">കെ എം എച്ച് എസ് ഗ്രന്ഥപ്പുര</h1>
-<input type="password" id="passInput" placeholder="Password">
-<button class="btn" onclick="doLogin()">Login</button>
-<p style="font-size:11px;margin-top:12px;cursor:pointer;text-decoration:underline;color:#666;" onclick="changePass()">Password മാറ്റാൻ</p>
-</div>
-</div>
-<div id="mainApp">
-<header><h1>കെ എം എച്ച് എസ് ഗ്രന്ഥപ്പുര</h1><p>KM HSS Karulai - V21.0 RIT Sundar Fixed - All Export Working</p></header>
-<div class="backup-bar">
-<button class="backup" onclick="backupData()">📦 Backup എടുക്കുക</button>
-<button class="restore" onclick="document.getElementById('restoreInput').click()">📥 Restore ചെയ്യുക</button>
-<button onclick="clearAllData()" style="background:#dc3545;color:#fff;border:none;">🗑️ Clear</button>
-</div>
-<div class="nav">
-<button class="active" onclick="openTab('add',this)">📘 പുതിയ പുസ്തകം</button>
-<button onclick="openTab('borrow',this)">📚 Borrow</button>
-<button onclick="openTab('return',this)">📥 Return</button>
-<button onclick="openTab('stock',this)">📋 Stock</button>
-<button onclick="openTab('borrowList',this)">📖 Borrow List</button>
-<button onclick="openTab('returnList',this)">✅ Return List</button>
-<button onclick="openTab('history',this)">🕒 History</button>
-</div>
-<div class="search-wrap">
-<input type="text" id="globalSearch" placeholder="CN.No / Book No / പേര് തിരയുക...">
-<button onclick="doSearch()">Search</button>
-<button onclick="clearSearch()" style="background:#666;">Clear</button>
-</div>
-<div id="add" class="section active">
-<div class="split">
-<div class="left">
-<h3>പുതിയ പുസ്തകം ചേർക്കുക</h3>
-<label>CN.No *</label><input id="cnNo">
-<label>ബുക്ക് നമ്പർ *</label><input id="bookNo">
-<label>പുസ്തകത്തിന്റെ പേര് *</label><input id="bookName">
-<label>കാറ്റഗറി</label><select id="category"><option>നോവൽ</option><option>കഥ</option><option>കവിത</option><option>പാഠപുസ്തകം</option><option>ചരിത്രം</option><option>ശാസ്ത്രം</option><option>ബാലസാഹിത്യം</option></select>
-<label>രചയിതാവ്</label><input id="author">
-<label>വില</label><input type="number" id="price">
-<label>ഡേറ്റ് (Auto)</label><input id="entryDate" class="auto-field" readonly>
-<button class="btn" onclick="addBook()">Add To Stock</button>
-</div>
-<div class="right" onclick="pickImage(this)"><span>📷 kalam.jpg</span></div>
-</div>
-</div>
+<input type="file" id="restoreInput" accept=".json,application/json" style="display:none" onchange="restoreData(event)">
+<script>
+var stock=JSON.parse(localStorage.getItem('stock')||'[]'); var borrowRec=JSON.parse(localStorage.getItem('borrowRec')||'[]'); var returnRec=JSON.parse(localStorage.getItem('returnRec')||'[]');
+function save(){localStorage.setItem('stock',JSON.stringify(stock));localStorage.setItem('borrowRec',JSON.stringify(borrowRec));localStorage.setItem('returnRec',JSON.stringify(returnRec));}
+function doLogin(){var p=document.getElementById('passInput').value; var PASS=localStorage.getItem('lib_pass')||'LB48042'; if(p===PASS||p==='LB48042'){document.getElementById('loginPage').style.display='none';document.getElementById('mainApp').style.display='block';render();} else alert('Password തെറ്റ്');}
+function openTab(id,btn){var secs=document.querySelectorAll('.section'); for(var i=0;i<secs.length;i++) secs[i].classList.remove('active'); document.getElementById(id).classList.add('active'); var btns=document.querySelectorAll('.nav button'); for(var j=0;j<btns.length;j++) btns[j].classList.remove('active'); if(btn) btn.classList.add('active');}
+function backupData(){var data={stock:stock,borrowRec:borrowRec,returnRec:returnRec}; var blob=new Blob([JSON.stringify(data)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='backup.json'; a.click();}
+function restoreData(e){var file=e.target.files[0]; if(!file) return; var reader=new FileReader(); reader.onload=function(ev){try{var data=JSON.parse(ev.target.result); stock=data.stock||[]; borrowRec=data.borrowRec||[]; returnRec=data.returnRec||[]; save(); render(); alert('Restore OK');}catch(err){alert('File Error');}}; reader.readAsText(file);}
+function addBook(){var cn=document.getElementById('cnNo').value.trim(); var no=document.getElementById('bookNo').value.trim(); var name=document.getElementById('bookName').value.trim(); if(!cn||!no||!name) return alert('Fill all'); stock.push({cn:cn,no:no,name:name,status:'Available'}); save(); render(); alert('Added');}
+function render(){var st=document.querySelector('#stockTable tbody'); st.innerHTML=''; for(var i=0;i<stock.length;i++){var b=stock[i]; st.innerHTML+='<tr><td>'+(i+1)+'</td><td>'+b.cn+'</td><td>'+b.no+'</td><td>'+b.name+'</td><td>'+b.status+'</td></tr>';} var bt=document.querySelector('#borrowTable tbody'); bt.innerHTML=''; for(var i=0;i<borrowRec.length;i++){var r=borrowRec[i]; bt.innerHTML+='<tr><td>'+(i+1)+'</td><td>'+r.student+'</td><td>'+r.bookNo+'</td><td>'+r.book+'</td></tr>';} var rt=document.querySelector('#returnTable tbody'); rt.innerHTML=''; for(var i=0;i<returnRec.length;i++){var r=returnRec[i]; rt.innerHTML+='<tr><td>'+(i+1)+'</td><td>'+r.student+'</td><td>'+r.bookNo+'</td><td>'+r.book+'</td></tr>';}}
+function borrowBook(){var bInput=document.getElementById('borrowBookName').value.trim().toLowerCase(); var book=null; for(var i=0;i<stock.length;i++){if(stock[i].no.toLowerCase()===bInput||stock[i].name.toLowerCase()===bInput){book=stock[i]; break;}} if(!book) return alert('Not found'); book.status='Issued'; borrowRec.push({student:document.getElementById('studName').value,bookNo:book.no,book:book.name}); save(); render();}
+function returnBook(){var bNo=document.getElementById('retBookNo').value.trim().toLowerCase(); var book=null; for(var i=0;i<stock.length;i++){if(stock[i].no.toLowerCase()===bNo){book=stock[i]; break;}} if(!book) return alert('Not found'); book.status='Available'; returnRec.push({student:'-',bookNo:book.no,book:book.name}); save(); render();}
+function exportExcel(id,file){try{var table=document.getElementById(id); if(typeof XLSX==='undefined'){var csv=[]; for(var r=0;r<table.rows.length;r++){var cols=[]; for(var c=0;c<table.rows[r].cells.length;c++){cols.push('\"'+table.rows[r].cells[c].innerText.replace(/\"/g,'\"\"')+'\"');} csv.push(cols.join(','));} var blob=new Blob([csv.join('\n')],{type:'text/csv'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=file+'.csv'; a.click(); alert(file+'.csv Download'); return;} var wb=XLSX.utils.table_to_book(table); XLSX.writeFile(wb,file+'.xlsx'); alert(file+' Downloaded');}catch(e){alert('Error '+e.message);}}
+</script>
+</body>
+</html>
