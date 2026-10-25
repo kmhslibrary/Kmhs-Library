@@ -52,7 +52,7 @@ input,select{width:100%;padding:12px;margin:6px 0;border:1px solid #bbb;border-r
 <div id="returnList" class="section"><h3>Return List</h3><table id="returnTable"><thead><tr><th>Sl.No</th><th>കുട്ടി</th><th>ID</th><th>Book No</th><th>പുസ്തകം</th><th>Return</th></tr></thead><tbody></tbody></table></div>
 <div id="history" class="section"><h3>Student History</h3><div class="search-wrap"><input type="text" id="histSearch" placeholder="ID / പേര്..."><button onclick="showHistory()">Search</button></div><table id="historyTable"><thead><tr><th>Sl.No</th><th>Type</th><th>Book No</th><th>പുസ്തകം</th><th>Date</th><th>Due</th></tr></thead><tbody></tbody></table></div>
 </div>
-<input type="file" id="restoreFile" accept=".json,application/json" style="display:none">
+<input type="file" id="restoreInput" accept=".json,application/json,text/plain,*/*" style="display:none" onchange="restoreData(event)">
 <script>
 let db;function openDB(){return new Promise((resolve)=>{let req=indexedDB.open('KMHSS_Library_V4',1);req.onupgradeneeded=e=>{let d=e.target.result; if(!d.objectStoreNames.contains('data')) d.createObjectStore('data');};req.onsuccess=e=>{db=e.target.result; resolve(db);};});}
 function dbGet(key){return new Promise(async (res)=>{await openDB();let tx=db.transaction('data','readonly');let store=tx.objectStore('data');let req=store.get(key);req.onsuccess=()=>res(req.result||null);});}
