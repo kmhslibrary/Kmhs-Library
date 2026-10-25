@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KMHSS V20.6 RIT Sundar - FIXED</title>
+<title>KMHSS V20.7 RIT Sundar - FIXED</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0d47a1">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 <style>
 @font-face{font-family:'RIT Sundar';src:url('RIT-Sundar.ttf') format('truetype'),url('RIT Sundar.ttf') format('truetype'),local('RIT Sundar');font-display:swap}
-*{font-family:'RIT Sundar','Noto Sans Malayalam',sans-serif}
+*{font-family:'RIT Sundar','Noto Sans Malayalam',sans-serif;box-sizing:border-box}
 body{margin:0;background:#f2f2f2;font-size:21px}
 #loginPage{height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#0f172a,#1e3a8a)}
 .login-box{background:#fff;padding:42px;border-radius:14px;width:400px;text-align:center}
 .btn{width:100%;padding:16px;background:#6c757d;color:#fff;border:none;border-radius:4px;font-weight:bold;cursor:pointer;margin-top:10px;font-size:21px}
 .scan-btn{background:#ff9800!important;margin-bottom:12px}
 #mainApp{display:none;padding:12px}
-header{background:#FFEB3B!important;display:flex!important;align-items:center!important;justify-content:space-between!important;padding:10px 16px!important;border-radius:14px!important;border:2px solid #f9a825!important;gap:12px}
-header img{width:120px!important;height:120px!important;object-fit:contain!important;background:transparent!important;border:none!important;border-radius:0!important;box-shadow:none!important;padding:0!important}
-.hdr-center{text-align:center;flex:1}
-.hdr-center h1{font-family:'RIT Sundar'!important;font-size:58px!important;color:#0d47a1!important;font-weight:normal!important;line-height:1.2;margin:0}
+header{background:#FFEB3B!important;display:flex!important;align-items:center!important;justify-content:space-between!important;padding:10px 16px!important;border-radius:14px!important;border:2px solid #f9a825!important;gap:12px;flex-wrap:nowrap}
+header img{width:clamp(60px,15vw,120px)!important;height:clamp(60px,15vw,120px)!important;object-fit:contain!important;background:transparent!important;border:none!important;border-radius:0!important;box-shadow:none!important;padding:0!important;flex-shrink:0}
+.hdr-center{text-align:center;flex:1;min-width:0;overflow-wrap:break-word;word-break:break-word}
+.hdr-center h1{font-family:'RIT Sundar'!important;font-size:clamp(28px,7vw,58px)!important;color:#0d47a1!important;font-weight:normal!important;line-height:1.25;margin:0;white-space:normal;overflow-wrap:anywhere}
 .credit{margin-top:6px;line-height:1.3}.credit small{font-size:14px;letter-spacing:2px;opacity:.7;text-transform:uppercase;display:block;color:#5d4037}.credit b{font-size:20px;color:#3e2723;display:block}.credit span{display:block;font-size:15px;color:#6d4c41}.gold-line{width:60px;height:3px;background:linear-gradient(to right,#ffd54f,#ff6f00);margin:8px auto 0;border-radius:2px}
 .backup-bar{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:16px 0}.backup-bar button{padding:14px 24px;border-radius:20px;border:none;font-weight:bold;cursor:pointer;font-size:19px}.backup{background:#0d6efd;color:#fff}.restore{background:#198754;color:#fff}.clear{background:#dc3545;color:#fff}
 .count-badge{background:#111;color:#fff;padding:8px 18px;border-radius:20px;font-weight:bold}.count-wrap{text-align:center;margin:12px 0}
@@ -28,37 +28,31 @@ header img{width:120px!important;height:120px!important;object-fit:contain!impor
 .section{display:none;background:#fff;padding:20px;border-radius:12px;margin-top:12px}.section.active{display:block}
 .split{display:flex;gap:18px;flex-wrap:wrap}.left{flex:1;min-width:300px}.right{flex:1;min-width:320px;min-height:500px;border-radius:12px;overflow:hidden;background:#fff;border:2px solid #aed581;display:flex;align-items:center;justify-content:center;position:relative}.right img{width:100%;height:100%;object-fit:contain;background:#fff}.right .tag{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.55);color:#fff;text-align:center;padding:6px;font-size:16px}
 input,select{width:100%;padding:12px;margin:6px 0;border:1px solid #bbb;border-radius:4px;box-sizing:border-box;font-size:20px}label{font-size:19px;font-weight:bold;display:block;margin-top:8px}table{width:100%;border-collapse:collapse;margin-top:12px}th,td{border:1px solid #ccc;padding:8px;font-size:19px;text-align:left}th{background:#222;color:#fff}.search-wrap{display:flex;gap:10px;margin-bottom:14px}.search-wrap input{flex:1;padding:14px;border:2px solid #0d6efd;border-radius:4px}.search-wrap button{padding:14px 22px;background:#6c757d;color:#fff;border:none;border-radius:4px;font-weight:bold}.auto-field{background:#eee!important}.edit-banner{background:#fff3cd;border:1px solid #ffda6a;padding:12px;border-radius:8px;margin-bottom:12px;display:none;font-weight:bold}.btn-edit,.btn-del{background:#6c757d;color:#fff;padding:8px 14px;border:none;border-radius:4px;cursor:pointer;margin-right:5px}.status-issued{color:#fff;background:#dc3545;padding:4px 10px;border-radius:4px;font-weight:bold}.status-available{color:#fff;background:#198754;padding:4px 10px;border-radius:4px;font-weight:bold}.status-late{color:#fff;background:#ff9800;padding:4px 10px;border-radius:4px;font-weight:bold}h3{font-size:26px}#pwdModal,#scanModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;justify-content:center;align-items:center}#pwdModal.show,#scanModal.show{display:flex}.pwd-box{background:#fff;padding:28px;border-radius:12px;width:340px;text-align:center}#reader{width:100%;max-width:400px}.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:12px 0}.dash-card{color:#fff;padding:16px;border-radius:12px;text-align:center}.dash-card b{font-size:32px;display:block}.dash-card.total{background:#0d6efd}.dash-card.available{background:#198754}.dash-card.issued{background:#dc3545}.dash-card.late{background:#ff9800}
+@media(max-width:600px){header{padding:8px!important} .hdr-center h1{line-height:1.3!important} .backup-bar button{flex:1 1 45%}}
 </style>
 </head>
 <body>
-<div id="loginPage"><div class="login-box"><h1 style="color:blue;font-size:50px;">കെ എം എച്ച് എസ് ഗ്രന്ഥപ്പുര</h1><p>V20.6 RIT Sundar - FIXED</p><input type="password" id="passInput" placeholder="Password"><button class="btn" onclick="doLogin()">Login</button></div></div>
+<div id="loginPage"><div class="login-box"><h1 style="color:blue;font-size:50px;">കെ എം എച്ച് എസ് ഗ്രന്ഥപ്പുര</h1><p>V20.7 FIXED</p><input type="password" id="passInput" placeholder="Password"><button class="btn" onclick="doLogin()">Login</button></div></div>
 <div id="pwdModal"><div class="pwd-box"><h3>🔒 പാസ്സ്‌വേർഡ്</h3><input type="password" id="pwdInput"><div style="display:flex;gap:12px;margin-top:16px;"><button style="flex:1;padding:14px;background:#6c757d;color:#fff;border:none;border-radius:6px;" onclick="closePwdModal()">Cancel</button><button style="flex:1;padding:14px;background:#0d6efd;color:#fff;border:none;border-radius:6px;" onclick="confirmPwdModal()">OK</button></div></div></div>
 <div id="scanModal"><div class="pwd-box" style="width:90%;max-width:450px;"><h3>📷 Scan</h3><div id="reader"></div><button style="width:100%;padding:14px;background:#dc3545;color:#fff;border:none;border-radius:6px;margin-top:10px;" onclick="stopScan()">Close</button></div></div>
 <div id="mainApp">
 <header>
 <img src="left.jpg"><div class="hdr-center"><h1>കെ എം എച്ച് എസ് ഗ്രന്ഥപ്പുര</h1><div class="credit"><small>Created by</small><b>Jamsheer PM</b><span>HST Urdu - KM HSS Karulai</span><div class="gold-line"></div></div></div><img src="right.jpg">
 </header>
-<div class="backup-bar"><button class="backup" onclick="backupData()">📦 Backup</button><button class="restore" onclick="document.getElementById('restoreInput').click()">📥 Restore</button><button class="clear" onclick="clearAllData()">🗑️ Clear</button></div>
+<div class="backup-bar"><button class="backup" onclick="backupData()">📦 Backup</button><button class="restore" onclick="document.getElementById('restoreInput').click()">📥 Restore (WhatsApp)</button><button class="clear" onclick="clearAllData()">🗑️ Clear</button></div>
 <div class="count-wrap"><span id="totalCount" class="count-badge">0 Books</span></div>
 <div class="dash"><div class="dash-card total"><b id="dTotal">0</b><span>Total</span></div><div class="dash-card available"><b id="dAvail">0</b><span>Available</span></div><div class="dash-card issued"><b id="dIssued">0</b><span>Issued</span></div><div class="dash-card late"><b id="dLate">0</b><span>Late</span></div></div>
 <div class="nav"><button class="active" onclick="openTab('add',this)">📘 പുതിയ പുസ്തകം</button><button onclick="openTab('borrow',this)">📚 Borrow</button><button onclick="openTab('return',this)">📥 Return</button><button onclick="openTab('stock',this)">📋 Stock</button><button onclick="openTab('borrowList',this)">📖 Borrow List</button><button onclick="openTab('returnList',this)">✅ Return List</button><button onclick="openTab('history',this)">👦 History</button></div>
 <div class="search-wrap"><input type="text" id="globalSearch" placeholder="CN.No / Book No തിരയുക..."><button onclick="doSearch()">Search</button><button onclick="clearSearch()" style="background:#666;">Clear</button></div>
-
-<div id="add" class="section active"><div class="split"><div class="left"><button class="btn scan-btn" onclick="startScan('add')">📷 Barcode Scan</button><div id="editBanner" class="edit-banner">✏️ എഡിറ്റ് - <span id="editInfo"></span> <button onclick="cancelEdit()" style="float:right;background:#dc3545;color:#fff;border:none;padding:4px 8px;border-radius:4px;">Cancel</button></div><h3 id="formTitle">പുതിയ പുസ്തകം ചേർക്കുക</h3><label>CN.No *</label><input id="cnNo" onblur="checkRepeatInstant()"><label>ബുക്ക് നമ്പർ *</label><input id="bookNo" onblur="checkRepeatInstant()"><label>പുസ്തകത്തിന്റെ പേര് *</label><input id="bookName"><label>കാറ്റഗറി</label><select id="category"><option value="">Select</option><option>നോവൽ</option><option>കഥ</option><option>കവിത</option><option>ജീവചരിത്രം</option><option>ആത്‍മ കഥ</option><option>ബാലസാഹിത്യം</option><option>ചരിത്രം</option><option>ശാസ്ത്രം</option></select><label>രചയിതാവ്</label><input id="author"><label>വില</label><input type="number" id="price"><label>ഡേറ്റ്</label><input id="entryDate" class="auto-field" readonly><button class="btn" id="mainBtn" onclick="addBook()">Add To Stock</button></div><div class="right"><img src="main.jpg"><div class="tag">ഗ്രന്ഥപ്പുരയിലേക്ക് സ്വാഗതം</div></div></div></div>
-
+<div id="add" class="section active"><div class="split"><div class="left"><button class="btn scan-btn" onclick="startScan('add')">📷 Barcode Scan - All Fields</button><div id="editBanner" class="edit-banner">✏️ എഡിറ്റ് - <span id="editInfo"></span> <button onclick="cancelEdit()" style="float:right;background:#dc3545;color:#fff;border:none;padding:4px 8px;border-radius:4px;">Cancel</button></div><h3 id="formTitle">പുതിയ പുസ്തകം ചേർക്കുക</h3><label>CN.No *</label><input id="cnNo" onblur="checkRepeatInstant()"><label>ബുക്ക് നമ്പർ *</label><input id="bookNo" onblur="checkRepeatInstant()"><label>പുസ്തകത്തിന്റെ പേര് *</label><input id="bookName"><label>കാറ്റഗറി</label><select id="category"><option value="">Select</option><option>നോവൽ</option><option>കഥ</option><option>കവിത</option><option>ജീവചരിത്രം</option><option>ആത്‍മ കഥ</option><option>ബാലസാഹിത്യം</option><option>ചരിത്രം</option><option>ശാസ്ത്രം</option></select><label>രചയിതാവ്</label><input id="author"><label>വില</label><input type="number" id="price"><label>ഡേറ്റ്</label><input id="entryDate" class="auto-field" readonly><button class="btn" id="mainBtn" onclick="addBook()">Add To Stock</button></div><div class="right"><img src="main.jpg"><div class="tag">ഗ്രന്ഥപ്പുരയിലേക്ക് സ്വാഗതം</div></div></div></div>
 <div id="borrow" class="section"><div class="split"><div class="left"><button class="btn scan-btn" onclick="startScan('borrow')">📷 Scan</button><h3>Borrow</h3><label>കുട്ടിയുടെ പേര്</label><input id="studName"><label>ID</label><input id="studId"><label>ബുക്ക് നമ്പർ</label><input id="borrowBookName" onkeyup="autoFillBorrow()"><label>പേര് Auto</label><input id="borrowRealName" class="auto-field" readonly><label>CN.No Auto</label><input id="borrowCN" class="auto-field" readonly><label>Category Auto</label><input id="borrowCat" class="auto-field" readonly><label>Price Auto</label><input id="borrowPrice" class="auto-field" readonly><label>Borrow Date</label><input id="borrowDate" class="auto-field" readonly><label>Due Date</label><input id="borrowDueDate" class="auto-field" readonly><button class="btn" onclick="borrowBook()">Borrow Book</button></div><div class="right"><img src="main.jpg"><div class="tag">ഗ്രന്ഥപ്പുരയിലേക്ക് സ്വാഗതം</div></div></div></div>
-
 <div id="return" class="section"><div class="split"><div class="left"><button class="btn scan-btn" onclick="startScan('return')">📷 Scan</button><h3>Return</h3><label>കുട്ടിയുടെ പേര് *</label><input id="retStudName"><label>ID *</label><input id="retStudId"><label>ബുക്ക് നമ്പർ *</label><input id="retBookNo" onkeyup="autoFillReturnByNo()"><label>പേര് Auto</label><input id="retBookName" class="auto-field" readonly><label>CN.No Auto</label><input id="retCN" class="auto-field" readonly><label>Category Auto</label><input id="retCat" class="auto-field" readonly><label>Return Date</label><input id="retDate" class="auto-field" readonly><button class="btn" onclick="returnBook()">Return Book</button></div><div class="right"><img src="main.jpg"><div class="tag">ഗ്രന്ഥപ്പുരയിലേക്ക് സ്വാഗതം</div></div></div></div>
-
 <div id="stock" class="section"><h3>Stock List - Date & Price Added ✅</h3><table id="stockTable"><thead><tr><th>Sl.No</th><th>CN.No</th><th>Book No</th><th>പേര്</th><th>Category</th><th>വില</th><th>ഡേറ്റ്</th><th>Status</th><th>Action</th></tr></thead><tbody></tbody></table></div>
-
 <div id="borrowList" class="section"><h3>Borrow List - Price Added ✅</h3><table id="borrowTable"><thead><tr><th>Sl.No</th><th>കുട്ടി</th><th>ID</th><th>Book No</th><th>പുസ്തകം</th><th>വില</th><th>Borrow</th><th>Due</th><th>Status</th></tr></thead><tbody></tbody></table></div>
-
 <div id="returnList" class="section"><h3>Return List</h3><table id="returnTable"><thead><tr><th>Sl.No</th><th>കുട്ടി</th><th>ID</th><th>Book No</th><th>പുസ്തകം</th><th>Return</th></tr></thead><tbody></tbody></table></div>
-
 <div id="history" class="section"><h3>Student History</h3><div class="search-wrap"><input type="text" id="histSearch" placeholder="ID / പേര്..."><button onclick="showHistory()">Search</button></div><table id="historyTable"><thead><tr><th>Sl.No</th><th>Type</th><th>Book No</th><th>പുസ്തകം</th><th>Date</th><th>Due</th></tr></thead><tbody></tbody></table></div>
 </div>
-<input type="file" id="restoreInput" accept=".json" style="display:none" onchange="restoreData(event)">
+<input type="file" id="restoreInput" accept=".json,application/json,text/plain,*/*" style="display:none" onchange="restoreData(event)">
 <script>
 let db;function openDB(){return new Promise((resolve)=>{let req=indexedDB.open('KMHSS_Library_V4',1);req.onupgradeneeded=e=>{let d=e.target.result; if(!d.objectStoreNames.contains('data')) d.createObjectStore('data');};req.onsuccess=e=>{db=e.target.result; resolve(db);};});}
 function dbGet(key){return new Promise(async (res)=>{await openDB();let tx=db.transaction('data','readonly');let store=tx.objectStore('data');let req=store.get(key);req.onsuccess=()=>res(req.result||null);});}
@@ -85,12 +79,71 @@ function autoFillReturnByNo(){let q=document.getElementById('retBookNo').value.t
 async function borrowBook(){let bInput=document.getElementById('borrowBookName').value.toLowerCase().trim();let studName=document.getElementById('studName').value.trim();let studId=document.getElementById('studId').value.trim();if(!studName||!studId) return alert('കുട്ടിയുടെ പേര് & ID നിർബന്ധം');let book=stock.find(x=>x.no.toLowerCase()===bInput||(x.cn||'').toLowerCase()===bInput||x.name.toLowerCase().includes(bInput));if(!book)return alert('സ്റ്റോക്കിൽ ഇല്ല');if(book.status=='Issued')return alert('Already Issued');book.status='Issued';borrowRec.push({student:studName,id:studId,bookNo:book.no,cn:book.cn,book:book.name,cat:book.cat,price:book.price,bookPrice:book.price,date:document.getElementById('borrowDate').value,dueDate:document.getElementById('borrowDueDate').value});await saveAll();render();alert('Borrowed - '+book.name);document.getElementById('studName').value='';document.getElementById('studId').value='';document.getElementById('borrowBookName').value='';document.getElementById('borrowRealName').value='';document.getElementById('borrowCN').value='';document.getElementById('borrowCat').value='';document.getElementById('borrowPrice').value='';updateDates();}
 async function returnBook(){let bNo=document.getElementById('retBookNo').value.trim();let retStudName=document.getElementById('retStudName').value.trim();let retStudId=document.getElementById('retStudId').value.trim();if(!retStudName||!retStudId) return alert('കുട്ടിയുടെ പേര് & ID നിർബന്ധം');let book=stock.find(x=>x.no.toLowerCase()===bNo.toLowerCase()||(x.cn||'').toLowerCase()===bNo.toLowerCase());if(!book) return alert('ബുക്ക് നമ്പർ തെറ്റ്');book.status='Available';returnRec.push({student:retStudName,studId:retStudId,bookNo:book.no,cn:book.cn,book:document.getElementById('retBookName').value,cat:document.getElementById('retCat').value,date:document.getElementById('retDate').value});let idx=borrowRec.findIndex(r=>r.bookNo.toLowerCase()===book.no.toLowerCase());if(idx!==-1) borrowRec.splice(idx,1);await saveAll();render();alert('Returned - '+book.name);document.getElementById('retStudName').value='';document.getElementById('retStudId').value='';document.getElementById('retBookNo').value='';document.getElementById('retBookName').value='';document.getElementById('retCN').value='';document.getElementById('retCat').value='';updateDates();}
 function showHistory(){let q=document.getElementById('histSearch').value.toLowerCase().trim();let tbody=document.querySelector('#historyTable tbody'); tbody.innerHTML='';if(!q) return alert('ID അല്ലെങ്കിൽ പേര് അടിക്കുക');let all=[...borrowRec.map(r=>Object.assign({},r,{type:'Borrow'})), ...returnRec.map(r=>Object.assign({},r,{type:'Return'}))];let filtered=all.filter(r=> (r.student&&r.student.toLowerCase().includes(q)) || (r.id&&r.id.toLowerCase().includes(q)) || (r.studId&&r.studId.toLowerCase().includes(q)) );filtered.forEach((r,i)=>{tbody.innerHTML+='<tr><td>'+(i+1)+'</td><td>'+r.type+'</td><td>'+r.bookNo+'</td><td>'+r.book+'</td><td>'+r.date+'</td><td>'+(r.dueDate||'')+'</td></tr>';});if(filtered.length===0) tbody.innerHTML='<tr><td colspan=6>ചരിത്രം ഇല്ല</td></tr>';}
-async function backupData(){ let data={stock:stock,borrowRec:borrowRec,returnRec:returnRec}; let jsonStr=JSON.stringify(data); let fileName='KMHSS_Library_Backup.json'; let file=new File([jsonStr], fileName, {type:'application/json'}); if(navigator.canShare && navigator.canShare({files:[file]})){ try{ await navigator.share({ title:'KMHSS Backup', text:'📚 KMHSS Backup - '+new Date().toLocaleDateString('en-GB'), files:[file] }); return; }catch(e){} } let blob=new Blob([jsonStr],{type:'application/json'}); let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fileName; a.click(); }
-async function restoreData(e){let file=e.target.files[0];if(!file)return;let reader=new FileReader();reader.onload=async function(ev){let data=JSON.parse(ev.target.result);stock=data.stock||[];borrowRec=data.borrowRec||[];returnRec=data.returnRec||[];await saveAll();render();alert('Restore OK');};reader.readAsText(file);}
+async function backupData(){ let data={stock:stock,borrowRec:borrowRec,returnRec:returnRec}; let jsonStr=JSON.stringify(data); let fileName='KMHSS_Library_Backup_'+new Date().toISOString().slice(0,10)+'.json'; let file=new File([jsonStr], fileName, {type:'application/json'}); if(navigator.canShare && navigator.canShare({files:[file]})){ try{ await navigator.share({ title:'KMHSS Backup', text:'📚 KMHSS Backup - '+new Date().toLocaleDateString('en-GB'), files:[file] }); return; }catch(e){} } let blob=new Blob([jsonStr],{type:'application/json'}); let url=URL.createObjectURL(blob); let a=document.createElement('a'); a.href=url; a.download=fileName; document.body.appendChild(a); a.click(); document.body.removeChild(a); setTimeout(()=>URL.revokeObjectURL(url),1000); alert('Backup Download ആയി! WhatsApp-ൽ Share ചെയ്യാം');}
+async function restoreData(e){let file=e.target.files[0];if(!file)return; try{ let text=await file.text(); let data=JSON.parse(text); stock=data.stock||data.Stock||[]; borrowRec=data.borrowRec||data.borrow||[]; returnRec=data.returnRec||data.return||[]; await saveAll(); render(); alert('✅ Restore OK - '+stock.length+' Books'); }catch(err){ alert('❌ ഫയൽ തെറ്റ്: '+err.message); } e.target.value='';}
 function clearAllData(){askPassword(async (pwd)=>{if(pwd !== localStorage.getItem(PASS_KEY)){alert("പാസ്സ്‌വേർഡ് തെറ്റ്!");return;}if(!confirm("ഉറപ്പാണോ?")){return;}stock=[];borrowRec=[];returnRec=[];await saveAll();render();alert("Clear ചെയ്തു.");});}
 let html5QrCode; let scanMode=''; function startScan(mode){scanMode=mode; document.getElementById('scanModal').classList.add('show'); html5QrCode=new Html5Qrcode("reader"); html5QrCode.start({facingMode:"environment"}, {fps:10, qrbox:{width:250,height:250}}, onScanSuccess, onScanFailure).catch(err=>{alert('Camera Error: '+err);});}
 function stopScan(){ if(html5QrCode){ html5QrCode.stop().then(()=>{document.getElementById('scanModal').classList.remove('show');}).catch(()=>{document.getElementById('scanModal').classList.remove('show');});} else {document.getElementById('scanModal').classList.remove('show');}}
-function onScanFailure(err){} async function onScanSuccess(decodedText){ stopScan(); if(scanMode==='add'){ document.getElementById('bookNo').value=decodedText; } else if(scanMode==='borrow'){ document.getElementById('borrowBookName').value=decodedText; autoFillBorrow(); } else if(scanMode==='return'){ document.getElementById('retBookNo').value=decodedText; autoFillReturnByNo(); } }
+function onScanFailure(err){} 
+function parseSmartQR(text){
+  text=text.trim();
+  // Try JSON
+  try{
+    let j=JSON.parse(text);
+    if(typeof j==='object'){
+      return {
+        cn: j.cn || j.CN || j.cnNo || '',
+        no: j.no || j.bookNo || j.BookNo || j.book_no || '',
+        name: j.name || j.bookName || j.title || '',
+        cat: j.cat || j.category || '',
+        author: j.author || '',
+        price: j.price || ''
+      };
+    }
+  }catch(e){}
+  // Try separators: | , ; tab
+  let sep=null;
+  if(text.includes('|')) sep='|';
+  else if(text.includes(';')) sep=';';
+  else if(text.includes('\t')) sep='\t';
+  else if((text.match(/,/g)||[]).length>=2) sep=',';
+  if(sep){
+    let p=text.split(sep).map(s=>s.trim());
+    // Expected: CN, BookNo, Name, Category, Author, Price
+    return {
+      cn: p[0]||'',
+      no: p[1]||p[0]||'',
+      name: p[2]||'',
+      cat: p[3]||'',
+      author: p[4]||'',
+      price: p[5]||''
+    };
+  }
+  // Only Book No
+  return {no:text};
+}
+async function onScanSuccess(decodedText){ stopScan(); 
+  if(scanMode==='add'){
+    let parsed=parseSmartQR(decodedText);
+    if(parsed.cn) document.getElementById('cnNo').value=parsed.cn;
+    if(parsed.no) document.getElementById('bookNo').value=parsed.no;
+    if(parsed.name) document.getElementById('bookName').value=parsed.name;
+    if(parsed.cat) document.getElementById('category').value=parsed.cat;
+    if(parsed.author) document.getElementById('author').value=parsed.author;
+    if(parsed.price) document.getElementById('price').value=parsed.price;
+    if(!parsed.name && parsed.no){
+      // if only book no scanned, try auto-fill checkRepeat
+      checkRepeatInstant();
+    }
+    alert('✅ Scan: '+(parsed.name||parsed.no));
+  } else if(scanMode==='borrow'){
+    document.getElementById('borrowBookName').value=decodedText.trim(); 
+    autoFillBorrow();
+  } else if(scanMode==='return'){
+    document.getElementById('retBookNo').value=decodedText.trim(); 
+    autoFillReturnByNo();
+  }
+}
 </script>
 <script>
 if ('serviceWorker' in navigator) {
