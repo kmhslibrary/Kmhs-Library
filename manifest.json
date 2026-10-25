@@ -1,0 +1,22 @@
+{
+  "name": "KMHSS ഗ്രന്ഥപ്പുര",
+  "short_name": "KMHSS Library",
+  "description": "KMHSS Karulai Library Management",
+  "start_url": "./index2.html",
+  "display": "standalone",
+  "background_color": "#FFEB3B",
+  "theme_color": "#0d47a1",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "left.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "left.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
